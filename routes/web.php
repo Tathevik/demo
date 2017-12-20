@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('/articles/{article}', 'ArticlesController@update');
 	Route::delete('/articles/{article}', 'ArticlesController@destroy');
 
-	/*articles CRUD*/
+	/*categories CRUD*/
 
 	Route::get('/categories', 'CategoriesController@index');
 	Route::get('/categories/create', 'CategoriesController@create');
