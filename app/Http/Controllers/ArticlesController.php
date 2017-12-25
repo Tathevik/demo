@@ -6,7 +6,6 @@ use App\Article;
 use App\Category;
 use Illuminate\Http\Request;
 use App\User;
-use Gate;
 
 class ArticlesController extends Controller
 {

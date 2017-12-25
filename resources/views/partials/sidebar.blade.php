@@ -2,7 +2,7 @@
 @foreach($archives as $archive)
     <ul>
         <li>
-            <a href="../articles/?month={{$archive->month}}&year={{$archive->year}}">
+            <a href="/articles/?month={{$archive->month}}&year={{$archive->year}}">
                 {{$archive->month}}
             </a>
         </li>
