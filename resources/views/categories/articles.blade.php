@@ -5,7 +5,7 @@
     @foreach($categoriesArticles as $article)
         <div class="card mb-4">
             <div class="card-body">
-                <a href="{{ url('/articles/'. $article->id) }}" class="btn btn-primary">{{ $article->title }}</a>
+                <a href="{{ url('/articles/'. $article->id) }}" >{{ $article->title }}</a>
             </div>
         </div>
     @endforeach

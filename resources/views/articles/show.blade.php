@@ -4,8 +4,9 @@
     <div class="card mb-4">
         <div class="card-body">
             <h2 class="card-title">
-                <a href="{{ url('/articles/'.$article->id.'/edit') }}" class="btn btn-primary">{{ $article->title }}</a>  
+                <a href="{{ url('/articles/'.$article->id.'/edit') }}" >{{ $article->title }}</a>  
             </h2>
+           
             <p class="card-text">{{ $article->body }}</p>
             <form action="{{ url('articles/'.$article->id) }}" method="POST">
                 {{ csrf_field() }}

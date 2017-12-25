@@ -14,10 +14,7 @@
                 <label for="body">Text:</label>
                 <textarea class="form-control" id="body" placeholder="body" name="body">{!! $article->body !!}</textarea>
             </div>
-          <!-- 
-             <select class="multiple-tags" name="categories[]" multiple="multiple" style="width:100%">
-            </select> -->
-            <select class="multiple-tags" name="categories[]" multiple="multiple" >
+            <select class="multiple-tags" name="categories[]" multiple="multiple" style="width:100%">
                 @foreach($article->categories as $category)
                     <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                 @endforeach

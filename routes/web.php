@@ -15,9 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('/login', 'AuthController@showLogin')->name('login');
+Route::post('/login', 'AuthController@login')->name('login');
+Route::get('/register', 'AuthController@showRegister')->name('register');
+Route::post('/register', 'AuthController@register')->name('register');
+Route::post('/logout', 'AuthController@logout')->name('logout');
+
 Route::group(['middleware' => 'auth'], function () {
-	
+
 	/*articles CRUD*/
 	
 	Route::get('/articles', 'ArticlesController@index');

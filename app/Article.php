@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Article extends Model
 {
@@ -30,5 +31,22 @@ class Article extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeFilter($query, $request)
+    {
+        if($request->has('month')){
+            $query->whereMonth('created_at', Carbon::parse($request->month)->month);
+        }
+        if($request->has('year')){
+            $query->whereYear('created_at', $request->year);
+        }
+    }
+    public static function archives()
+    {
+        return static::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(created_at) desc')
+            ->get();
     }
 }

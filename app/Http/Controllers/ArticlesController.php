@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Category;
 use Illuminate\Http\Request;
+use App\User;
+use Gate;
 
 class ArticlesController extends Controller
 {
-    public	function index()
+    public	function index(Request $request)
     {
-    	$articles = Article::latest()->get();
+    	$articles = Article::latest()->filter($request)->get();
 
     	return view('articles.index', compact('articles'));
     }
@@ -36,6 +38,8 @@ class ArticlesController extends Controller
 
     public function show(Article $article)
     {
+        $this->authorize('rule', $article);
+
         $categories = $article->categories;
 
         $comments = $article->comments;
@@ -45,13 +49,18 @@ class ArticlesController extends Controller
 
     public function edit(Article $article)
     {
-        $categories = Category::all();
 
+        $this->authorize('rule', $article);
+
+        $categories = Category::all();
+        
         return view('articles.edit', compact('article', 'categories'));
     }
 
     public function update(Request $request, Article $article)
     {    
+        $this->authorize('rule', $article);
+
         $article->update($request->only(['title', 'body']));
         $article->categories()->sync($request->categories);
 
@@ -60,6 +69,8 @@ class ArticlesController extends Controller
 
 	public function destroy(Article $article)
     {
+        $this->authorize('rule', $article);
+
         $article->delete();
 
         return redirect('/articles');

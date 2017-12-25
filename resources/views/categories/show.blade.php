@@ -4,7 +4,7 @@
     <div class="card mb-4">
         <div class="card-body">
             <h2 class="card-title">
-                <a href="{{ url('/categories/'.$category->id.'/edit') }}" class="btn btn-primary">{{ $category->name }}</a>  
+                <a href="{{ url('/categories/'.$category->id.'/edit') }}" >{{ $category->name }}</a>  
             </h2>
             <form action="{{ url('categories/'.$category->id) }}" method="POST">
                 {{ csrf_field() }}

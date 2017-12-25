@@ -23,6 +23,9 @@
         <div class="col-md-8">
             @yield('content')
         </div>
+        <div class="col-md-4">
+            @include('partials.sidebar')
+        </div> 
 	</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
