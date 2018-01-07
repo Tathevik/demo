@@ -41,7 +41,7 @@ class AuthController extends Controller
 
     	auth()->login($user);
 
-        \Mail::to($user)->send(new WelcomeAgain);
+        // \Mail::to($user)->send(new WelcomeAgain);
 
         session()->flash('message', 'You have registered successfully!');
     	

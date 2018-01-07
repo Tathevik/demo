@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Config\Repository;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Repository $config)
     {
-        return view('home');
+        dd($config->get('database.default'));
+        return $config->get('database.default');
     }
 }

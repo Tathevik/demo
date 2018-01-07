@@ -70,6 +70,8 @@ class ArticlesController extends Controller
     {
         $this->authorize('rule', $article);
 
+        $article->comments()->delete();
+        $article->categories()->detach();
         $article->delete();
 
         return redirect('/articles');

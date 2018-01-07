@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+// 	$user = new App\User;
+// 	event(new App\Events\Event($user));
+//     // return new \App\Mail\WelcomeAgain;
+// });
+
+Route::get('/', 'HomeController@index');
 
 Route::get('/login', 'AuthController@showLogin')->name('login');
 Route::post('/login', 'AuthController@login')->name('login');

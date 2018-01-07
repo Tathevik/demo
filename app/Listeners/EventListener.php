@@ -26,6 +26,7 @@ class EventListener
      */
     public function handle(Event $event)
     {
-        //
+        //handling event
+        dd($event);
     }
 }
