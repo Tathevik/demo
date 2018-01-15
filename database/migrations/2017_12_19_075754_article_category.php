@@ -17,7 +17,7 @@ class ArticleCategory extends Migration
             $table->increments('id');
             $table->unsignedInteger('article_id');
             $table->unsignedInteger('category_id');
-            $table->primary(['article_id', 'category_id']);
+//            $table->primary(['article_id', 'category_id']);
         });
     }
 

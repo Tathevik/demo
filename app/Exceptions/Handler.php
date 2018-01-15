@@ -5,6 +5,11 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\Access\AuthorizationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+use App\Exceptions\NotFoundExeption;
+use App\Exceptions\AnotherExceptions;
+use Illuminate\Support\Facades\Log;
 
 class Handler extends ExceptionHandler
 {
@@ -45,10 +50,32 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
 
-        if($exception instanceof AuthorizationException){
+        if($exception instanceof AuthorizationException)
+        {
             return response()->view('errors.403');
         }
-        
+//
+//        if($exception instanceof NotFoundHttpException)
+//        {
+//            throw new NotFoundException($exception );
+//        }
+
+
+        if($exception instanceof  \Symfony\Component\HttpKernel\Exception\HttpException)
+        {
+            throw new NotFoundException($exception );
+        }
+
+        if($exception instanceof \Symfony\Component\Debug\Exception\FatalThrowableError)
+        {
+            $_token = str_random();
+
+            Log::error($_token."\n".$exception);
+
+            throw new AnotherExceptions($_token);
+        }
+
         return parent::render($request, $exception);
+
     }
 }

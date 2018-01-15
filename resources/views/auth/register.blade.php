@@ -25,6 +25,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label for="nusernameame" class="col-md-4 control-label">Username</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+
+                                @if ($errors->has('username'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
@@ -48,6 +62,19 @@
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('phonefield') ? ' has-error' : '' }}">
+                            <label for="phonefield" class="col-md-4 control-label">Phone Number</label>
+
+                            <div class="col-md-6">
+                                <input id="phonefield" type="text" class="form-control" name="phonefield" required>
+
+                                @if ($errors->has('phonefield'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phonefield') }}</strong>
                                     </span>
                                 @endif
                             </div>

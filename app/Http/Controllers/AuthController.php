@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmailToUsers;
 use Illuminate\Http\Request;
 use App\User;
 use App\MAil\WelcomeAgain;
@@ -36,12 +37,17 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'phonefield' => $request->phonefield,
+            'username' => $request->username,
+
         ]);
 
     	auth()->login($user);
 
-        // \Mail::to($user)->send(new WelcomeAgain);
+    	$job = new SendEmailToUsers($user);
+
+    	$this->dispatch($job->onQueue('email'));
 
         session()->flash('message', 'You have registered successfully!');
     	

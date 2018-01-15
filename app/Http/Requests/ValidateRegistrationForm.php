@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
+
 class ValidateRegistrationForm extends FormRequest
 {
     /**
@@ -27,6 +29,8 @@ class ValidateRegistrationForm extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
+            'phonefield' => 'phone:AUTO,US',
+            'username' => 'required|string|min:3|alpha_num_dots',
         ];
     }
 }

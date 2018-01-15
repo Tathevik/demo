@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +19,10 @@
 // });
 
 Route::get('/', 'HomeController@index');
+//Route::get('/api/articles', function(){
+//    $users = App\Article::with('user')->get();
+//    return App\Http\Resources\ArticlesResours::collection($users);
+//});
 
 Route::get('/login', 'AuthController@showLogin')->name('login');
 Route::post('/login', 'AuthController@login')->name('login');
