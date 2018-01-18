@@ -15,7 +15,18 @@
                     <a href="{{ url('/articles/' . $article->id) }}" >{{ $article->title }}</a>
                 </h2>
                 <p class="card-text">{{ $article->body }}</p>
+                @haslikes((object) $article)
+                    <p class="card-text">likes-{{ $article->reviews->likes() }}</p>
+                @endhaslikes
+
+                @hasmoreDislikesThenLikes((object) $article)
+                    <p class="card-text">dislike-{{ $article->reviews->dislikes() }}</p>
+                @endhasmoreDislikesThenLikes
             </div>
         </div>
     @endforeach
+
+
+
+
 @endsection

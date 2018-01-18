@@ -179,6 +179,8 @@ return [
 
         /*Custom service providers*/
         App\Providers\ValidatorServiceProvide::class,
+        App\Providers\MacroServiceProvider::class,
+        App\Providers\DirectiveServiceProvider::class,
 
     ],
 

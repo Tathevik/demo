@@ -49,4 +49,9 @@ class Article extends Model
             ->orderByRaw('min(created_at) desc')
             ->get();
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

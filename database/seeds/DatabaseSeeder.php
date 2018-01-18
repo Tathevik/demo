@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    protected $toTruncate = ['users','articles'];
+    protected $toTruncate = ['users'];
     /**
      * Run the database seeds.
      *
@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
-    	foreach($this->toTruncate as $table){
-    		DB::table($table)->truncate();
-    	}
+//    	foreach($this->toTruncate as $table){
+//    		DB::table($table)->truncate();
+//    	}
 
         $this->call(UsersTableSeeder::class);
     }

@@ -11,7 +11,7 @@ class ArticlesController extends Controller
 {
     public	function index(Request $request)
     {
-    	$articles = Article::latest()->filter($request)->get();
+    	$articles = Article::with('reviews')->latest()->filter($request)->get();
 
     	return view('articles.index', compact('articles'));
     }

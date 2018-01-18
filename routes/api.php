@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/articles', function(){
+
     $users = App\Article::with('user')->get();
     return App\Http\Resources\ArticlesResours::collection($users);
 });
