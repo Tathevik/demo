@@ -17,8 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/articles', function(){
+Route::group(['middleware' => 'auth.token'], function () {
 
-    $users = App\Article::with('user')->get();
-    return App\Http\Resources\ArticlesResours::collection($users);
+    Route::get('/articles', 'Api\ArticlesApiController@index');
+
 });

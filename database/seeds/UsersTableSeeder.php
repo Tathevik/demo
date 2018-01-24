@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     {
         factory(App\User::class, 5)->create()->each(function ($user) {
             $user->articles()->saveMany(factory(App\Article::class, 2)->make())->each(function ($article) {
-                $article->reviews()->saveMany(factory(App\Review::class, 3)->make());
+                $article->reviews()->saveMany(factory(App\Review::class, 300000)->make());
             });
         });
     }

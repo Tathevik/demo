@@ -13,6 +13,30 @@ class ArticlesController extends Controller
     {
     	$articles = Article::with('reviews')->latest()->filter($request)->get();
 
+        $articleswithlikesanddislaikes = Article::join('reviews', 'articles.id', '=', 'reviews.article_id')
+            ->select(
+                \DB::raw('(sum(reviews.thumb_up = 1)) as likes'),
+                \DB::raw('(sum(reviews.thumb_up = 0)) as dislikes'),
+                'articles.title',
+                'articles.body',
+                'articles.created_at',
+                'articles.updated_at')
+            ->groupBy('article_id')
+            ->toSql();
+
+        $articleWithReviesStatusesByPriority =
+        Article::with(['review' => function ($query) {
+            $query->select('status', 'article_id', \DB::raw('count(status) as count'))
+                  ->groupBy('status')
+                  ->groupBy('article_id')
+                  ->orderBy('count', 'desc')
+                  ->orderByRaw("FIELD(status, 'a' , 'p', 'n') asc");
+        }])->get()
+        ;
+
+
+//        dd($articleWithReviesStatusesByPriority);
+        
     	return view('articles.index', compact('articles'));
     }
 
@@ -78,3 +102,5 @@ class ArticlesController extends Controller
     }
 
 }
+
+
