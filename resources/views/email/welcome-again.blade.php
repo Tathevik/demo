@@ -1,7 +1,7 @@
 @component('mail::message')
 # Introduction
 
-The body of your message.
+Please follow the link to verify your email address {{ url(URL::to('register/verify/' . $confirmation_code)) }}
 
 @component('mail::button', ['url' => ''])
 Button Text

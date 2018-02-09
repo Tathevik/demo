@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<xsd:schema version="2.0" targetNamespace="urn:oecd:ties:fatca:v2" elementFormDefault="qualified" attributeFormDefault="unqualified"><import namespace="urn:oecd:ties:isofatcatypes:v1" schemaLocation="isofatcatypes_v1.1.xsd">PHP2: More Parser Stories</import></xsd:schema>

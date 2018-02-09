@@ -11,33 +11,22 @@ class ArticlesController extends Controller
 {
     public	function index(Request $request)
     {
-    	$articles = Article::with('reviews')->latest()->filter($request)->get();
 
-        $articleswithlikesanddislaikes = Article::join('reviews', 'articles.id', '=', 'reviews.article_id')
-            ->select(
-                \DB::raw('(sum(reviews.thumb_up = 1)) as likes'),
-                \DB::raw('(sum(reviews.thumb_up = 0)) as dislikes'),
-                'articles.title',
-                'articles.body',
-                'articles.created_at',
-                'articles.updated_at')
-            ->groupBy('article_id')
-            ->toSql();
+        $articles = new Article();
+        $sort = 'asc';
+//        dd($request->getQueryString());
+        if($request->ajax()){
+            $sort = $request->sort ?? 'asc';
+            $columnName = $request->column_name;
+            $articles = $articles->orderBy($columnName, $sort);
+            $articles = $articles->paginate(5);
+            return view('articles.table', compact('articles', 'sort'));
+        }
 
-        $articleWithReviesStatusesByPriority =
-        Article::with(['review' => function ($query) {
-            $query->select('status', 'article_id', \DB::raw('count(status) as count'))
-                  ->groupBy('status')
-                  ->groupBy('article_id')
-                  ->orderBy('count', 'desc')
-                  ->orderByRaw("FIELD(status, 'a' , 'p', 'n') asc");
-        }])->get()
-        ;
+        $articles = $articles->paginate(5);
 
 
-//        dd($articleWithReviesStatusesByPriority);
-        
-    	return view('articles.index', compact('articles'));
+    	return view('articles.index', compact('articles', 'sort'));
     }
 
     public function create()

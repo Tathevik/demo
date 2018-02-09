@@ -2,13 +2,13 @@
 <html>
 <head>
 	<title>
-		Welcome email
+		Email
 	</title>
 </head>
 <body>
 	<div>
 		<p>
-			Well done
+			{{$user->name}} user has been registered successfully.
 		</p>
 	</div>
 </body>

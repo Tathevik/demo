@@ -16,9 +16,11 @@ class WelcomeAgain extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    protected $confirmation_code;
+
+    public function __construct($confirmation_code)
     {
-        //
+        $this->confirmation_code = $confirmation_code;
     }
 
     /**
@@ -28,6 +30,6 @@ class WelcomeAgain extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.welcome-again');
+        return $this->markdown('email.welcome-again')->with('confirmation_code',$this->confirmation_code);;
     }
 }

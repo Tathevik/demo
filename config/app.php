@@ -125,6 +125,8 @@ return [
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
+    'languages' => ['en', 'hy'],
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -184,6 +186,7 @@ return [
         App\Providers\DirectiveServiceProvider::class,
         App\Providers\CheckAuthTokenServiceProvider::class,
 
+        Chumper\Zipper\ZipperServiceProvider::class,
     ],
 
     /*
@@ -232,7 +235,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Debugbar' => Barryvdh\Debugbar\ServiceProvider::class
+        'Debugbar' => Barryvdh\Debugbar\ServiceProvider::class,
+        'Zipper' => Chumper\Zipper\Zipper::class
     ],
 
 ];

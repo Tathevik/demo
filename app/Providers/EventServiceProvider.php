@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Event' => [
             'App\Listeners\EventListener',
         ],
+        'App\Events\UserRegisteringEvent' => [
+            'App\Listeners\UserRegisteringListener',
+        ],
     ];
 
     /**
@@ -27,6 +30,5 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
     }
 }

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema version="2.0" targetNamespace="urn:oecd:ties:fatca:v2" elementFormDefault="qualified" attributeFormDefault="unqualified"><ftc:FATCA_OECD xmlns:ftc="ftc" namespace="urn:oecd:ties:isofatcatypes:v1" schemaLocation="isofatcatypes_v1.1.xsd">PHP2: More Parser Stories</ftc:FATCA_OECD></schema>
